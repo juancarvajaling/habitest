@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  habiapi:
+    build: habiapi
+    ports:
+      - 8000:8000
+    env_file:
+      - envs/habiapi.env

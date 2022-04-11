@@ -7,9 +7,9 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # This keeps Python from buffering stdin/stdout
 ENV PYTHONUNBUFFERED 1
 
-COPY . /habiapp
+COPY . /habiapi
 
 RUN pip install --upgrade pip && \
-    pip install -r /habiapp/requirements.txt
+    pip install -r /habiapi/requirements.txt
 
-WORKDIR /habiapp
+WORKDIR /habiapi

@@ -29,7 +29,10 @@ class PropertyFinderHandler:
         return self.get()
 
     def get(self):
-        """Return properties that match with reques query params"""
+        """Return properties that match with reques query params
+
+        :return: tuple with resulting data and HTTP status
+        """
 
         path_parsed = urlparse(self.path)
         raw_query_params = parse_qs(path_parsed.query)
@@ -39,7 +42,7 @@ class PropertyFinderHandler:
         if not query_params_validated["is_ok"]:
             return query_params_validated["result"], status.HTTP_400_BAD_REQUEST
 
-        result = do_select(**query_params_validated)
+        result = do_select(**query_params_validated["result"])
         if not result["is_ok"]:
             return result["result"], status.HTTP_500_INTERNAL_SERVER_ERROR
 

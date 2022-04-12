@@ -2,6 +2,7 @@ version: '3.9'
 services:
   habiapi:
     build: habiapi
+    command: python run.py
     volumes:
       - ./habiapi:/habiapi
     ports:

@@ -4,7 +4,7 @@ from urllib.parse import urlparse, parse_qs
 
 from server import status
 from propertyfinder.validators import validate_query_params
-from propertyfinder.queries import do_select
+from propertyfinder.queries import get_properties
 
 
 class PropertyFinderHandler:
@@ -42,7 +42,7 @@ class PropertyFinderHandler:
         if not query_params_validated["is_ok"]:
             return query_params_validated["result"], status.HTTP_400_BAD_REQUEST
 
-        result = do_select(**query_params_validated["result"])
+        result = get_properties(**query_params_validated["result"])
         if not result["is_ok"]:
             return result["result"], status.HTTP_500_INTERNAL_SERVER_ERROR
 

@@ -57,7 +57,15 @@ De acuerdo al diagrama, solo sería necesario crear la tabla like, así:
 
 ```sql
 CREATE TABLE like (
-    property_id INT FOREIGN KEY REFERENCES property(id),
-    auth_user_id INT FOREIGN KEY REFERENCES auth_user(id)
+    date_like DATE,
+    property_id INT,
+    auth_user_id INT,
+    FOREIGN KEY (property_id) REFERENCES property(id),
+    FOREIGN KEY (auth_user_id) REFERENCES auth_user(id)
 );
 ```
+
+Con esta tabla completamente especificado la fecha en la que hizo un like, el usuario que lo hizo y la propiedad a la que lo hizo.
+
+## Optimización
+La consulta que se hace a la base de datos actualmente tiene que hacer una unión de 3 tablas y en una de ellas primero filtra el registro más reciente para cada propiedad (`status_history`). Para mejorar el tiempo de consulta se podría modificar la tabla `property` para que incluya una columna llamada `last_status`. Esta columna tendrá el `id` del último estado registrado para cada propiedad. Esta opción agrega pasos a la ejecución del sistema, dado que cada vez que hay un nuevo estado para una propiedad, aparte de la creación del registro histórico, se tiene que actualizar la información de la propiedad. La ventaja en este caso es que la consulta de propiedades solo tendrá que hacer un join de dos tablas, siendo una de ellas (`status`) muy pequeña.

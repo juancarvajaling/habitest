@@ -48,6 +48,11 @@ http://localhost:8000/api/property/?year=2022&city=medellin&status=vendido
 
 No es necesario añadir todos los filtro. También es posible no usar filtros.
 
+Para correr los test se debe ejecutar:
+```bash
+docker-compose run --rm habiapi pytest -v
+```
+
 ## Like
 Para implementar la funcionalidad de darle me gusta a las propiedades se propone la siguiente modificación en la base de datos:
 

@@ -1,15 +1,12 @@
-"""
-Tests for queries module
-"""
+"""Tests for queries module"""
+
 from unittest.mock import Mock
 
 from propertyfinder.queries import get_properties
 
 
 def test_get_properties_not_ok(monkeypatch):
-    """
-    Test bad result when getting properties
-    """
+    """Test bad result when getting properties"""
 
     expected_result = {
         "is_ok": False,
@@ -24,9 +21,7 @@ def test_get_properties_not_ok(monkeypatch):
 
 
 def test_get_properties_no_filter(monkeypatch):
-    """
-    Test getting properties without filters
-    """
+    """Test getting properties without filters"""
 
     query = ""
     with open("propertyfinder/tests/test_data/query_no_filters.sql") as query_sql:
@@ -42,9 +37,7 @@ def test_get_properties_no_filter(monkeypatch):
 
 
 def test_get_properties_year(monkeypatch):
-    """
-    Test getting properties filtering only by year
-    """
+    """Test getting properties filtering only by year"""
 
     query = ""
     with open("propertyfinder/tests/test_data/query_year.sql") as query_sql:
@@ -60,9 +53,7 @@ def test_get_properties_year(monkeypatch):
 
 
 def test_get_properties_city(monkeypatch):
-    """
-    Test getting properties filtering only by city
-    """
+    """Test getting properties filtering only by city"""
 
     query = ""
     with open("propertyfinder/tests/test_data/query_city.sql") as query_sql:
@@ -78,9 +69,7 @@ def test_get_properties_city(monkeypatch):
 
 
 def test_get_properties_status(monkeypatch):
-    """
-    Test getting properties filtering only by status
-    """
+    """Test getting properties filtering only by status"""
 
     query = ""
     with open("propertyfinder/tests/test_data/query_status.sql") as query_sql:
@@ -96,9 +85,7 @@ def test_get_properties_status(monkeypatch):
 
 
 def test_get_properties_all(monkeypatch):
-    """
-    Test getting properties filtering only by all filters
-    """
+    """Test getting properties filtering only by all filters"""
 
     query = ""
     with open("propertyfinder/tests/test_data/query_all.sql") as query_sql:

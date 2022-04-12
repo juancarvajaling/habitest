@@ -1,18 +1,18 @@
-"""
-Manage connections again MySQL database.
-"""
+"""Manage connections again MySQL database"""
 
-import os
 import contextlib
+import os
+from typing import List
+
 import mysql.connector
 
 
 @contextlib.contextmanager
 def _mysql_cursor():
-    """
-    Context manager that yields a MySQL cursor and close it automatically.
+    """Context manager that yields a MySQL cursor and close it automatically
 
     :yield: MySQL cursor
+    :rtype: mysql.connector.cursor_cext.CMySQLCursorBufferedDict
     """
 
     try:
@@ -36,13 +36,14 @@ def _mysql_cursor():
 
 
 def execute_query(cursor, query: str) -> dict:
-    """
-    Use a cursor to execute a query
+    """_summary_
 
     :param cursor: MySQL cursor
-    :param str query: query to be executed
-
+    :type cursor: mysql.connector.cursor_cext.CMySQLCursorBufferedDict
+    :param query: query to be executed
+    :type query: str
     :return: dictionary with the execution result
+    :rtype: dict
     """
 
     try:
@@ -51,13 +52,13 @@ def execute_query(cursor, query: str) -> dict:
         return 
 
 
-def do_select(query: str) -> list:
-    """
-    Executes a SELECT SQL query agains MySQL database.
+def do_select(query: str) -> List[dict]:
+    """Executes a SELECT SQL query agains MySQL database
 
-    :param str query: query to be executed.
-
-    :return: list of dictionaries. Every dictionary is a register from db.
+    :param query: query to be executed
+    :type query: str
+    :return: list of dictionaries. Every dictionary is a register from db
+    :rtype: List[dict]
     """
 
     select_result = {

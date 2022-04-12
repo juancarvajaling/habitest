@@ -1,6 +1,5 @@
-"""
-Tests for database connection and query executions.
-"""
+"""Tests for database connection and query executions"""
+
 from unittest.mock import Mock
 
 import mysql.connector
@@ -9,9 +8,7 @@ from database.dbhandler import _mysql_cursor, do_select
 
 
 def test_db_connection_fail(monkeypatch):
-    """
-    Test exception during database connection
-    """
+    """Test exception during database connection"""
 
     monkeypatch.setattr(
         "mysql.connector.connect", Mock(side_effect=mysql.connector.Error)
@@ -21,9 +18,7 @@ def test_db_connection_fail(monkeypatch):
 
 
 def test_db_connection_ok(monkeypatch):
-    """
-    Test database connection successfull
-    """
+    """Test database connection successfull"""
 
     monkeypatch.setattr("mysql.connector.connect", Mock())
     with _mysql_cursor() as cursor:
@@ -31,9 +26,7 @@ def test_db_connection_ok(monkeypatch):
 
 
 def test_select_query_none_cursor(monkeypatch):
-    """"
-    Test select_query method getting a None cursor
-    """
+    """"Test select_query method getting a None cursor"""
 
     expected_result = {
         "is_ok": False,
@@ -48,9 +41,7 @@ def test_select_query_none_cursor(monkeypatch):
 
 
 def test_select_query_execute_error(monkeypatch):
-    """
-    Test select_query method failing while executing a query.
-    """
+    """Test select_query method failing while executing a query"""
 
     expected_result = {
         "is_ok": False,
@@ -65,9 +56,7 @@ def test_select_query_execute_error(monkeypatch):
 
 
 def test_select_query_ok(monkeypatch, cursor_mock):
-    """
-    Test select_query method whithout problems
-    """
+    """Test select_query method whithout problems"""
 
     expected_result = {
         "is_ok": True,
